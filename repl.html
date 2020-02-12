@@ -1,0 +1,93 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+      body {
+        height: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <div class="container mt-5" style="margin-bottom: 150px;">
+        <div class="shadow p-3 mb-3 bg-white rounded" v-for="message in messages">
+          <strong v-if="message.me">Me</strong>
+          <strong v-else>Bot</strong>
+          <span v-if="message.text">{{ message.text }}</span>
+          <img v-if="message.image" :src="message.image" style="max-height:50px" />
+        </div>
+      </div>
+      <div style="position:fixed; bottom:0; width: 100%;">
+        <div class="container mt-5">
+          <div class="shadow p-3 mb-3 bg-white rounded">
+            <div class="form-row">
+              <div class="col-6 col-sm-8 col-lg-10">
+                <input type="text" class="form-control" v-model="newMessage" placeholder="Message" aria-label="Message" v-on:keyup.enter="sendMessage()">
+              </div>
+              <div class="col-6 col-sm-4 col-lg-2 text-right">
+                <button class="btn btn-primary" type="button" v-on:click="sendMessage()">Send</button>
+                <button class="btn btn-secondary" type="button" v-on:click="clearMessages()">Clear</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+
+
+      <!--ul class="list-group">
+        <li class="list-group-item" v-for="message in messages">
+          <strong v-if="message.me">Me</strong>
+          <strong v-else>Bot</strong>
+          <span v-if="message.text">{{ message.text }}</span>
+          <img v-if="message.image" :src="message.image" style="max-height:50px" />
+        </li>
+      </ul>
+      <div class="input-group mb-3">
+        <input type="text" class="form-control" v-model="newMessage" placeholder="Message" aria-label="Message" v-on:keyup.enter="sendMessage()">
+        <div class="input-group-append">
+          <button class="btn btn-outline-secondary" type="button" v-on:click="sendMessage()">Button</button>
+        </div>
+      </div-->
+    </div>
+    <script>
+      var app = new Vue({
+        el: '#app',
+        data: {
+          newMessage: '',
+          messages: []
+        },
+        methods: {
+          clearMessages: function() {
+            this.messages = [];
+          },
+          sendMessage: async function() {
+            if (!this.newMessage){ return }
+            let message = this.newMessage;
+            this.newMessage = '';
+            this.messages.push({
+              me: true,
+              text: message
+            })
+            let resp = await fetch('http://localhost:5005/webhooks/rest/webhook', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({
+                sender: 'user',
+                message: message
+              })
+            });
+            resp = await resp.json();
+            this.messages = this.messages.concat(resp);
+            setTimeout(function() {
+              window.scrollTo(0, document.body.scrollHeight);
+            }, 100);
+          }
+        }
+      })
+    </script>
+  </body>
+</html>

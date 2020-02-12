@@ -1,0 +1,5 @@
+.DS_Store
+out.log
+
+models/
+__pycache__/

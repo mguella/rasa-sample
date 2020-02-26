@@ -1,6 +1,10 @@
 <html>
   <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Knit Bot - Rasa Sample</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://unpkg.com/uuid@7.0.1/dist/umd/uuidv4.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <style>
       body {
@@ -10,7 +14,7 @@
   </head>
   <body>
     <div id="app">
-      <div class="container mt-5" style="margin-bottom: 150px;">
+      <div class="container mt-5" style="padding-bottom:200px;">
         <div class="shadow p-3 mb-3 bg-white rounded" v-for="message in messages">
           <strong v-if="message.me">Me</strong>
           <strong v-else>Bot</strong>
@@ -21,6 +25,9 @@
       <div style="position:fixed; bottom:0; width: 100%;">
         <div class="container mt-5">
           <div class="shadow p-3 mb-3 bg-white rounded">
+            <div class="text-center" v-if="lastMessage && lastMessage.buttons && lastMessage.buttons.length">
+              <button v-for="resp in lastMessage.buttons" class="btn btn-secondary mr-2 mb-2" type="button" v-on:click="chooseResponse(resp)">{{ resp }}</button>
+            </div>
             <div class="form-row">
               <div class="col-6 col-sm-8 col-lg-10">
                 <input type="text" class="form-control" v-model="newMessage" placeholder="Message" aria-label="Message" v-on:keyup.enter="sendMessage()">
@@ -33,34 +40,27 @@
           </div>
         </div>
       </div>
-      
-
-
-      <!--ul class="list-group">
-        <li class="list-group-item" v-for="message in messages">
-          <strong v-if="message.me">Me</strong>
-          <strong v-else>Bot</strong>
-          <span v-if="message.text">{{ message.text }}</span>
-          <img v-if="message.image" :src="message.image" style="max-height:50px" />
-        </li>
-      </ul>
-      <div class="input-group mb-3">
-        <input type="text" class="form-control" v-model="newMessage" placeholder="Message" aria-label="Message" v-on:keyup.enter="sendMessage()">
-        <div class="input-group-append">
-          <button class="btn btn-outline-secondary" type="button" v-on:click="sendMessage()">Button</button>
-        </div>
-      </div-->
     </div>
     <script>
       var app = new Vue({
         el: '#app',
         data: {
           newMessage: '',
-          messages: []
+          messages: [],
+          uuid: uuidv4()
+        },
+        computed: {
+          lastMessage: function() {
+            return this.messages[this.messages.length - 1];
+          }
         },
         methods: {
           clearMessages: function() {
             this.messages = [];
+          },
+          chooseResponse: function(txt) {
+            this.newMessage = txt;
+            this.sendMessage();
           },
           sendMessage: async function() {
             if (!this.newMessage){ return }
@@ -70,13 +70,13 @@
               me: true,
               text: message
             })
-            let resp = await fetch('http://localhost:5005/webhooks/rest/webhook', {
+            let resp = await fetch('/webhook', {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json'
               },
               body: JSON.stringify({
-                sender: 'user',
+                sender: this.uuid,
                 message: message
               })
             });

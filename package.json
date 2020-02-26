@@ -1,0 +1,24 @@
+{
+  "name": "rasa-sample",
+  "version": "1.0.0",
+  "description": "KnitBot - Rasa Sample",
+  "main": "index.js",
+  "scripts": {
+    "start": "rasa run -m models --enable-api --cors \"*\" --debug & node index"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mguella/rasa-sample.git"
+  },
+  "keywords": [],
+  "author": "Mattia",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mguella/rasa-sample/issues"
+  },
+  "homepage": "https://github.com/mguella/rasa-sample#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "http-proxy-middleware": "^1.0.0"
+  }
+}

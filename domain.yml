@@ -3,37 +3,151 @@ intents:
   - goodbye
   - affirm
   - deny
-  - mood_great
-  - mood_unhappy
-  - bot_challenge
+  - add_friends
+  - add_media
+  - audio
+  - audio_in_calls
+  - audio_in_media
+  - block_user
+  - report_bug
+  - more_options
+  - talk_to_support
+  - schedule
+  - schedule_call
+  - view_scheduled_calls
+  - start_call
+  - missed_calls
+  - change_video_in_channel
+  - delete_account
+  - desktop_app
+  - email
+  - email_verification
+  - email_switch
+  - end_call
 
 actions:
-- utter_greet
-- utter_cheer_up
-- utter_did_that_help
-- utter_happy
-- utter_goodbye
-- utter_iamabot
+  - utter_greet
+  - utter_add_friends
+  - utter_add_media
+  - utter_audio
+  - utter_audio_in_calls
+  - utter_audio_in_media
+  - utter_block_user
+  - utter_schedule
+  - utter_schedule_call
+  - utter_view_scheduled_calls
+  - utter_start_call
+  - utter_missed_calls
+  - utter_change_video_in_channel
+  - utter_delete_account
+  - utter_desktop_app
+  - utter_email
+  - utter_email_verification
+  - utter_email_switch
+  - utter_end_call
+  - utter_did_it_help
+  - utter_glad_to_help
+  - utter_did_not_help
+  - utter_more_options
+  - utter_talk_to_support
+  - utter_human_take_care
+  - utter_bye
 
 responses:
   utter_greet:
-  - text: "Hey! How are you?"
+    - text: "Hi <Name>! Thanks for reaching out 😊"
+    - text: "Welcome back 👋 How can I help you today?"
 
-  utter_cheer_up:
-  - text: "Here is something to cheer you up:"
-    image: "https://i.imgur.com/nGF1K8f.jpg"
+  utter_add_friends:
+    - text: "Great, I'd be more than happy to help you with that. To add a friend, swipe left to the Friends screen. Use the search bar to search for the person you'd like to add. You can type their name, username, or their phone number. Then, tap \"Add\" next to their name."
 
-  utter_did_that_help:
-  - text: "Did that help you?"
+  utter_add_media:
+    - text: "I'd love to help you out. From your call tap the _____ icon at the bottom of the screen to open the media picker. Use the search bar to find your favorite video, or browse through our media categories. Once you’ve found something you love, tap the play icon to play it immediately."
 
-  utter_happy:
-  - text: "Great, carry on!"
+  utter_audio:
+    - text: "What are you having trouble with?"
+      buttons:
+        - "Audio on video calls"
+        - "Audio on playing media"
 
-  utter_goodbye:
-  - text: "Bye"
+  utter_audio_in_calls:
+    - text: "Great, I'm happy to help you with that. If your friends can't hear you talk, first check to make sure that you are not muted. Also, check that you have given Knit access to your microphone in your device's settings. If you cant hear your friends, make sure the volume is turned up on your device as well."
 
-  utter_iamabot:
-  - text: "I am a bot, powered by Rasa."
+  utter_audio_in_media:
+    - text: "Okay, let me see if I can help you out. If you cant hear sound on media you're playing, make sure the volume is turned up on your device."
+
+  utter_block_user:
+    - text: "I'd be happy to help you today, <Name>. To block a friend on Knit, swipe left to the Friends screen, then tap on the person's avatar whom you want to block. Tap the 3 dots (...) in the upper right corner of the screen, and tap \"Block User.\" If you're not friends with the user, you can still block them by tapping on their avatar from Friend Requests and following the same steps."
+
+  utter_schedule:
+    - text: "What are you having trouble with?"
+      buttons:
+        - "Schduling a call"
+        - "Viewing scheduled calls"
+
+  utter_schedule_call:
+    - text: "Alright, <Name>, I'd be happy to help you! To schedule a call, swipe right to the Live screen. Then, tap \"Schedule\" in the upper right corner of the screen. From there, you'll create a new event, adding information like the event name, members, date, and the frequency of the event."
+
+  utter_view_scheduled_calls:
+    - text: "Great, <Name>, I'd be happy to help you! To view your scheduled calls, swipe right to the Live screen. If you have any scheduled calls, they will appear under the \"Scheduled\" section."
+
+  utter_start_call:
+    - text: "No problem, let me see if I can help you out. To start a call, swipe left to the Friends screen, then tap the phone icon next to the name of the friend, or group you'd like to call."
+
+  utter_missed_calls:
+    - text: "To see your missed calls, swipe left to the Friends screen, and tap on the notifications icon. Here, you'll see a list of friends who have called you. To call back, simply tap the phone icon next to their name."
+
+  utter_change_video_in_channel:
+    - text: "Thanks <Name>. To play the next video in one of our channels, tap the video thats currently playing on the stage. Then, tap the next button to move onto the next video."
+
+  utter_delete_account:
+    - text: "I'd hate to see you go, <Name>! If you're sure you want to delete your account, swipe left to the Friends screen and tap on your own avatar in the upper right corner. Then, tap on Settings, and scroll to \"Delete Account.\" Keep in mind that deleting your account will result in permanently losing all of your friends, groups, and any group history. 😓"
+
+  utter_desktop_app:
+    - text: "I'm afraid we don't currently offer a desktop version of Knit, but it's definitely something were working on for the future. Stay tuned!"
+
+  utter_email:
+    - text: "What are you having trouble with?"
+      buttons:
+        - "Verifying your email"
+        - "Switching your email"
+
+  utter_email_verification:
+    - text: "I'm happy to help you solve the problem. To verify your email, swipe left to the Friends screen and tap on your own avatar in the upper right corner. Then, tap on Settings, and next \"Email.\" Type in your email address, and we'll send you a verification email. Once you receive that email, tap \"Verify Now,\" and you're ready to roll."
+
+  utter_email_switch:
+    - text: "I'm happy to help you solve the problem. To change your email address, swipe left to the Friends screen and tap on your own avatar in the upper right corner. Then, tap on Settings, and next \"Email.\" Type in your new email address, and we'll send you a verification email. Once you receive that email, tap \"Verify Now,\" and you're ready to roll."
+
+  utter_end_call:
+    - text: "Hopefully I can help you out, <Name>. To end your call at anytime, swipe down on your video call and tap the red end call icon in the upper right corner. You can also end your call by swiping left to the \"Friends\" screen, and tapping the red end call icon next to your current call."
+
+  utter_did_it_help:
+    - text: "Does that help answer your question?"
+      buttons:
+        - "Yes"
+        - "No"
+
+  utter_glad_to_help:
+    - text: "Awesome. Glad I could help you out today. Let me know if you need anything else 😇"
+
+  utter_did_not_help:
+    - text: "I'm sorry I wasn't able to help 😔 Would you like to see more options, or be contacted by a member of our support team?"
+      buttons:
+        - "Contact support"
+        - "More options"
+        - "No thanks"
+
+  utter_more_options:
+    - text: "I'd love to help out, but let's have the humans take care of this one 🤖 Someone from our team will be in touch with you soon, so check back here for updates."
+
+  utter_talk_to_support:
+    - text: "Of course, <Name>. Someone from our team will be in touch with you soon, so check back here for updates!"
+
+  utter_human_take_care:
+    - text: "Let's have the humans take care of this one 🤖 Someone from our team will be in touch with you soon, so check back here for updates"
+
+  utter_bye:
+    - text: "Goodbye 👋"
 
 session_config:
   session_expiration_time: 60

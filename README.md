@@ -7,16 +7,12 @@ pip3 install rasa
 
 ### Train
 ```
-rasa train
+npm run train
 ```
 
-### Interactive shell
-```
-rasa shell
-```
+### Start server
 
-### Serve as API
 ```
-rasa run -m models --enable-api --cors "*" --debug
+npm start
+open http://localhost:3000
 ```
-*for a sample iteraction* open `repl.html`

@@ -4,7 +4,10 @@
   "description": "KnitBot - Rasa Sample",
   "main": "index.js",
   "scripts": {
-    "start": "rasa run -m models --enable-api --cors \"*\" --debug & node index"
+    "train": "rasa train",
+    "api-server": "rasa run -m models --enable-api --cors \"*\" --debug",
+    "ui-server": "node index",
+    "start": "npm run api-server & npm run ui-server"
   },
   "repository": {
     "type": "git",

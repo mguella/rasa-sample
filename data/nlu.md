@@ -27,6 +27,9 @@
 - no way
 - not really
 
+## intent:add
+- add
+
 ## intent:add_friends
 - add friends
 - I'm can't add friends
@@ -43,6 +46,9 @@
 - where can I find media?
 
 ## intent:audio
+- audio
+- hear
+- sound
 - I can't hear the sound
 - I can't hear the audio
 - audio doens't work

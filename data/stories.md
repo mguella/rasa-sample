@@ -8,7 +8,23 @@
   - utter_did_it_help
 > check_did_it_help
 
+## add, add friends
+* add
+  - utter_add
+* add_friends
+  - utter_add_friends
+  - utter_did_it_help
+> check_did_it_help
+
 ## add media
+* add_media
+  - utter_add_media
+  - utter_did_it_help
+> check_did_it_help
+
+## add, add media
+* add
+  - utter_add
 * add_media
   - utter_add_media
   - utter_did_it_help

@@ -3,6 +3,7 @@ intents:
   - goodbye
   - affirm
   - deny
+  - add
   - add_friends
   - add_media
   - audio
@@ -27,6 +28,7 @@ intents:
 
 actions:
   - utter_greet
+  - utter_add
   - utter_add_friends
   - utter_add_media
   - utter_audio
@@ -57,7 +59,13 @@ responses:
   utter_greet:
     - text: "Hi <Name>! Thanks for reaching out 😊"
     - text: "Welcome back 👋 How can I help you today?"
-
+  
+  utter_add:
+    - text: "What are you having trouble with?"
+      buttons:
+        - "Adding friends"
+        - "Adding media"
+  
   utter_add_friends:
     - text: "Great, I'd be more than happy to help you with that. To add a friend, swipe left to the Friends screen. Use the search bar to search for the person you'd like to add. You can type their name, username, or their phone number. Then, tap \"Add\" next to their name."
 
